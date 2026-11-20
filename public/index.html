@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHEMARK Living · Content Studio & Isolated Test Preview</title>
+  <title>SHEMARK LIVING | Original Art, Digital Art & Lifestyle Objects (Test Environment)</title>
   <style>
     :root {
       --bg: #faf9f6;
       --card-bg: #ffffff;
       --text: #1a1a1a;
       --text-muted: #666666;
-      --accent: #2c3e50;
       --border: #e8e6e1;
       --primary: #111827;
       --tag-bg: #f3f4f6;
@@ -18,224 +17,306 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
     
-    /* Top Header */
-    header { background: #fff; border-bottom: 1px solid var(--border); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
-    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.1em; color: var(--primary); text-decoration: none; }
-    nav { display: flex; gap: 1.5rem; align-items: center; }
-    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    nav a:hover { color: var(--primary); }
-    .btn-cms { background: var(--primary); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; }
+    /* Top Header matching preview site */
+    header { background: #fff; border-bottom: 1px solid var(--border); padding: 1.25rem 2.5rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,0.03); }
+    .header-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .brand-wrap { display: flex; align-items: baseline; gap: 0.75rem; text-decoration: none; }
+    .logo { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.12em; color: var(--primary); }
+    .tagline { font-size: 0.75rem; color: #9ca3af; letter-spacing: 0.15em; font-weight: 600; }
+    
+    /* Nav Menu Hierarchy */
+    nav { display: flex; gap: 2rem; align-items: center; }
+    .nav-item { position: relative; }
+    .nav-link { color: #374151; text-decoration: none; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0; display: inline-flex; align-items: center; gap: 0.25rem; }
+    .nav-link:hover { color: #000; }
+    
+    .btn-cms { background: var(--primary); color: #fff; padding: 0.5rem 1.1rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; transition: background 0.2s; }
     .btn-cms:hover { background: #374151; }
 
-    /* Hero Section */
-    .hero { padding: 4rem 2rem 3rem; text-align: center; max-width: 900px; margin: 0 auto; }
-    .badge-test { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1.25rem; }
-    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
-    .hero h2 { font-size: 1.5rem; color: #4b5563; font-weight: 400; margin-bottom: 1.25rem; }
-    .hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; }
+    /* Hero */
+    .hero { padding: 4.5rem 2rem 3.5rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .badge-test { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 0.3rem 0.85rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.03em; color: var(--primary); }
+    .hero h2 { font-size: 1.35rem; color: #4b5563; font-weight: 400; margin-bottom: 1.25rem; }
+    .hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 680px; margin: 0 auto 2rem; line-height: 1.7; }
 
-    /* Main Container */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem 4rem; }
-    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin: 3rem 0 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.75rem; }
-    .section-header h3 { font-size: 1.35rem; font-weight: 600; }
-    .section-header span { font-size: 0.85rem; color: var(--text-muted); }
+    /* Container & Sections */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin: 3.5rem 0 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.85rem; }
+    .section-header h3 { font-size: 1.35rem; font-weight: 700; }
+    .section-header span { font-size: 0.85rem; color: #6b7280; font-family: monospace; }
 
-    /* Grid Layouts */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-    .card-img-placeholder { height: 180px; background: linear-gradient(135deg, #e5e7eb, #d1d5db); display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 0.9rem; font-weight: 500; }
-    .card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
-    .card-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; color: #4b5563; background: var(--tag-bg); padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.5rem; align-self: flex-start; }
-    .card-title-en { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--primary); }
+    /* Grids */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.75rem; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+    .card-img { height: 190px; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #4b5563; font-size: 0.9rem; font-weight: 600; padding: 1rem; text-align: center; }
+    .card-body { padding: 1.35rem; flex: 1; display: flex; flex-direction: column; }
+    .card-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; color: #1e3a8a; background: #dbeafe; padding: 0.2rem 0.55rem; border-radius: 4px; margin-bottom: 0.6rem; align-self: flex-start; }
+    .card-title-en { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--primary); }
     .card-title-zh { font-size: 0.95rem; color: #4b5563; margin-bottom: 0.75rem; }
-    .card-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem; flex: 1; }
-    .card-meta { font-size: 0.75rem; color: #9ca3af; border-top: 1px solid var(--border); padding-top: 0.75rem; display: flex; justify-content: space-between; }
+    .card-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; flex: 1; }
+    .card-meta { font-size: 0.75rem; color: #9ca3af; border-top: 1px solid var(--border); padding-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; }
 
-    /* Footer */
-    footer { background: #fff; border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
-    footer p { margin-bottom: 0.5rem; }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 1.85rem; }
-      .hero h2 { font-size: 1.2rem; }
-      nav { display: none; }
-    }
+    footer { background: #fff; border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; line-height: 1.8; }
+    @media (max-width: 900px) { nav { display: none; } .hero h1 { font-size: 2.1rem; } }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Header matching Preview Site -->
   <header>
     <div class="header-inner">
-      <a href="/" class="logo">SHEMARK LIVING</a>
+      <div class="brand-wrap">
+        <a href="/" class="logo">SHEMARK</a>
+        <span class="tagline">ART · SPACE · LIFE</span>
+      </div>
       <nav>
-        <a href="#artworks">Artworks / 画作</a>
-        <a href="#digital-art">Digital Art / 壁纸</a>
-        <a href="#objects">Objects / 好物</a>
-        <a href="#spaces">Spaces / 空间</a>
-        <a href="#collections">Collections / 策展</a>
+        <div class="nav-item"><a href="#objects" class="nav-link">SHOP: ARTFUL OBJECTS</a></div>
+        <div class="nav-item"><a href="#digital-art" class="nav-link">DIGITAL ART</a></div>
+        <div class="nav-item"><a href="#collections" class="nav-link">COLLECTIONS</a></div>
+        <div class="nav-item"><a href="#artworks" class="nav-link">ORIGINAL ARTWORKS</a></div>
+        <div class="nav-item"><a href="#spaces" class="nav-link">ART IN YOUR SPACE</a></div>
         <a href="/admin/" class="btn-cms">Decap CMS 后台 ➔</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Content (Mapped from Site Content) -->
+  <!-- Hero Section -->
   <div class="hero">
-    <div class="badge-test">M1-B REAL ISOLATED INTEGRATION TEST ENVIRONMENT</div>
-    <h1 id="hero-en">Art. Life. Healing.</h1>
-    <h2 id="hero-zh">生活 · 艺术 · 疗愈</h2>
-    <p id="hero-sub">Connecting original master art with everyday architecture through digital art, bespoke objects, and unique originals.</p>
-    <a href="/admin/" class="btn-cms" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">登录 Decap CMS 内容管理后台 ➔</a>
+    <div class="badge-test">SHEMARK CONTENT STUDIO · ISOLATED TEST PREVIEW</div>
+    <h1>Live With Art.</h1>
+    <h2>生活 · 艺术 · 疗愈</h2>
+    <p>Original art for the things you wear, use, and live with. Translating the mineral colors and living flow of Songge's original paintings into curated digital editions, everyday objects, and architectural spaces.</p>
+    <a href="/admin/" class="btn-cms" style="padding: 0.85rem 1.75rem; font-size: 0.95rem;">进入 Decap CMS 内容管理后台 ➔</a>
   </div>
 
   <div class="container">
-    <!-- 1. Artworks -->
-    <div class="section-header" id="artworks">
-      <h3>1. Artworks / 原作与限量画作</h3>
-      <span>Collection: artworks (src/data/artworks/)</span>
-    </div>
-    <div class="grid" id="grid-artworks"></div>
-
-    <!-- 2. Digital Art -->
-    <div class="section-header" id="digital-art">
-      <h3>2. Digital Art / 数字艺术与壁纸 (5大分类)</h3>
-      <span>Collection: digital_art (src/data/digital-art/)</span>
-    </div>
-    <div class="grid" id="grid-digital-art"></div>
-
-    <!-- 3. Objects -->
+    <!-- 1. Shop: Artful Objects -->
     <div class="section-header" id="objects">
-      <h3>3. Art-Inspired Objects / 艺术衍生好物</h3>
-      <span>Collection: objects (src/data/objects/)</span>
+      <h3>1. Shop: Artful Objects / 实体好物</h3>
+      <span>CMS Collection: objects (src/data/objects/)</span>
     </div>
     <div class="grid" id="grid-objects"></div>
 
-    <!-- 4. Spaces -->
-    <div class="section-header" id="spaces">
-      <h3>4. Art Spaces / 空间美学与案例</h3>
-      <span>Collection: spaces (src/data/spaces/)</span>
+    <!-- 2. Digital Art Editions -->
+    <div class="section-header" id="digital-art">
+      <h3>2. Digital Art Editions / 数字艺术系列 (Printable, Wallpapers & Frame)</h3>
+      <span>CMS Collection: digital_art (src/data/digital-art/)</span>
     </div>
-    <div class="grid" id="grid-spaces"></div>
+    <div class="grid" id="grid-digital-art"></div>
 
-    <!-- 5. Collections -->
+    <!-- 3. Living Collections -->
     <div class="section-header" id="collections">
-      <h3>5. Collections / 策展合集与主题</h3>
-      <span>Collection: collections (src/data/collections/)</span>
+      <h3>3. Living Collections / 策展主题合集 (Everyday, Spaces & Gifts)</h3>
+      <span>CMS Collection: collections (src/data/collections/)</span>
     </div>
     <div class="grid" id="grid-collections"></div>
+
+    <!-- 4. Original Artworks & Gallery -->
+    <div class="section-header" id="artworks">
+      <h3>4. Original Artworks & Gallery / 唯一原作画廊与私洽</h3>
+      <span>CMS Collection: artworks (src/data/artworks/)</span>
+    </div>
+    <div class="grid" id="grid-artworks"></div>
+
+    <!-- 5. Art in Your Space -->
+    <div class="section-header" id="spaces">
+      <h3>5. Art in Your Space / 空间美学与案例</h3>
+      <span>CMS Collection: spaces (src/data/spaces/)</span>
+    </div>
+    <div class="grid" id="grid-spaces"></div>
   </div>
 
-  <!-- Footer (Mapped from Site Content) -->
+  <!-- Footer -->
   <footer>
-    <p id="footer-artist">Collaborating with master artists (including Songge) to bring authentic warmth into contemporary architecture.</p>
-    <p id="footer-contact">Contact: packaging@bdsupply.cc | Headquarters: 314200</p>
-    <p id="footer-copy">© 2026 SHEMARK LIVING. All rights reserved. (Isolated Test Build)</p>
+    <p><strong>The Artist · Songge (松哥)</strong>: Authentic oil and natural mineral masterworks created in Hangzhou mountain studio.</p>
+    <p>Curated Living & Spatial Advisory: packaging@bdsupply.cc | HQ: 314200</p>
+    <p>© 2026 SHEMARK LIVING. All rights reserved. (Isolated Integration Test Environment)</p>
   </footer>
 
   <script>
-    // Embedded Live Content Data (Pre-rendered & Synchronized with CMS Models)
-    const CONTENT = {
-      siteContent: {"heroHeadlineEn":"Art. Life. Healing.","heroHeadlineZh":"生活 · 艺术 · 疗愈","heroSubheadEn":"Connecting original master art with everyday architecture through digital art, bespoke objects, and unique originals.","heroSubheadZh":"以数字艺术、实体好物与唯一原作，构建艺术与日常生活的诗意连接。","missionStatement":"Premium Industrial Editorial art curation for discerning global spaces. We supply research, verification, and aesthetic quality.","artistBioEn":"Collaborating with master artists (including Songge) to bring authentic warmth and emotional resonance into contemporary interior spaces.","artistBioZh":"携手当代艺术家（包括松哥），将真实质感与精神疗愈融入现代建筑空间。","contactEmail":"packaging@bdsupply.cc","footerCopyright":"© 2026 SHEMARK LIVING. All rights reserved."},
-      artworks: [{"id":"AW-001","titleEn":"Silent Horizon","titleZh":"静谧地平线","coverImage":"/assets/images/sample-art-01.webp","medium":"Mixed media with mineral pigment / 综合矿物矿物颜料画布","dimensions":"120 × 160 cm","curatorNoteEn":"A meditative composition exploring subtle textures and spatial tranquility.","curatorNoteZh":"以冥想式的笔触探索细腻肌理与空间静谧感，营造沉静的当代东方美学。","status":"published"}, {"id":"AW-002","titleEn":"Ethereal Breath","titleZh":"空灵之息","coverImage":"/assets/images/sample-art-02.webp","medium":"Oil on French linen / 法国亚麻布油彩","dimensions":"100 × 120 cm","curatorNoteEn":"Visualizing the rhythmic flow of air and light across textured surfaces.","curatorNoteZh":"捕捉光影与空气在肌理表面的呼吸流动，传递自然疗愈力。","status":"published"}],
-      digitalArt: [{"id":"DIG-001","category":"Mobile Wallpapers / 手机壁纸","titleEn":"Morning Mist iPhone Screen","titleZh":"晨雾 · 手机壁纸","deviceCompatibility":"iPhone & Android (9:16 / 19.5:9)","accessTier":"Free Download / 免费直接下载","previewImage":"/assets/previews/dig-001-preview.webp","downloadFile":"/assets/downloads/dig-001-wallpaper.webp","licensingNote":"Free for personal non-commercial mobile screen display.","status":"published"}, {"id":"DIG-002","category":"Desktop Wallpapers / 桌面壁纸","titleEn":"Deep Sea Meditation 4K","titleZh":"深海冥想 · 4K桌面壁纸","deviceCompatibility":"4K Desktop / Mac (16:9 / 16:10)","accessTier":"Free Download / 免费直接下载","previewImage":"/assets/previews/dig-002-preview.webp","downloadFile":"/assets/downloads/dig-002-4k.webp","licensingNote":"Free personal desktop wallpaper use.","status":"published"}, {"id":"DIG-003","category":"Samsung The Frame / 画壁电视预览","titleEn":"Warm Serenity for The Frame","titleZh":"温润安宁 · 画壁电视艺术画","deviceCompatibility":"Samsung The Frame 4K Matte (16:9)","accessTier":"Preview Only / 仅供高清预览","previewImage":"/assets/previews/dig-003-frame.webp","downloadFile":"","licensingNote":"Display preview only. Official Samsung Art Store licensing via inquiry.","status":"published"}, {"id":"DIG-004","category":"Printable Fine Art / 微喷艺术版画","titleEn":"Solitary Mountain Giclée Print","titleZh":"孤山 · 限量收藏级艺术微喷","deviceCompatibility":"300 DPI Hahnemühle German Etching Paper","accessTier":"Custom Inquiry / 专属咨询定制","previewImage":"/assets/previews/dig-004-print.webp","downloadFile":"","licensingNote":"Print master files strictly protected. Physical custom framed order only.","status":"published"}],
-      objects: [{"id":"OBJ-001","nameEn":"Silent Horizon Mulberry Silk Scarf","nameZh":"静谧地平线 · 桑蚕丝艺术方巾","relatedArtworkId":"AW-001","coverImage":"/assets/objects/obj-001-scarf.webp","materialCraft":"100% 16mm Mulberry Silk, Hand-rolled hem / 100% 16姆米桑蚕丝，手工卷边","inquiryGuide":"Bespoke corporate gifting & small-batch museum edition. Contact via inquiry form.","status":"published"}],
-      spaces: [{"id":"SPC-001","spaceNameEn":"Zen Tea Pavilion Suite","spaceNameZh":"云栖山舍 · 禅意茶庭套房","spaceType":"Hotel / 精品酒店","coverImage":"/assets/spaces/spc-001-tea.webp","featuredArtworkIds":"AW-001, AW-002","caseStoryEn":"Custom curation integrating textured mineral paintings with natural teakwood and warm clay walls.","caseStoryZh":"结合天然柚木与温润黏土墙面，定制两幅大型矿物肌理画，实现空间与心境的共鸣。","status":"published"}],
-      collections: [{"slug":"serene-blue","themeTitleEn":"Serene Blue Curation 2026","themeTitleZh":"2026 宁静蔚蓝 · 策展主题","curatorialStatement":"Exploring the boundary between marine depths and inner peace through mineral pigments and indigo resonance.","artworkIds":"AW-001, AW-002, DIG-002","bannerImage":"/assets/banners/serene-blue.webp","status":"published"}]
+    const DATA = {
+      objects: [{
+        id: "OBJ-001",
+        nameEn: "Silent Horizon Mulberry Silk Scarf",
+        nameZh: "静谧地平线 · 桑蚕丝艺术方巾",
+        relatedArtworkId: "AW-001",
+        materialCraft: "100% 16mm Mulberry Silk, Hand-rolled hem (100% 16姆米桑蚕丝，手工卷边)",
+        inquiryGuide: "In development · Early curatorial inquiries welcome",
+        status: "published"
+      }],
+      digitalArt: [
+        {
+          id: "DIG-001",
+          category: "Free Art Wallpapers / 免费艺术壁纸",
+          titleEn: "Morning Mist iPhone Screen",
+          titleZh: "晨雾 · 手机壁纸",
+          deviceCompatibility: "iPhone & Android (9:16)",
+          accessTier: "Free Download / 免费直接下载",
+          licensingNote: "Personal use license · 4K High-Res",
+          status: "published"
+        },
+        {
+          id: "DIG-002",
+          category: "02 · Digital Wallpapers (Mobile/Desktop)",
+          titleEn: "Deep Sea Meditation 4K",
+          titleZh: "深海冥想 · 4K桌面壁纸",
+          deviceCompatibility: "4K Desktop / Mac (16:9)",
+          accessTier: "Free Download / 免费直接下载",
+          licensingNote: "Personal use license",
+          status: "published"
+        },
+        {
+          id: "DIG-003",
+          category: "02 · Samsung The Frame / 画壁电视专属预览",
+          titleEn: "Warm Serenity for The Frame",
+          titleZh: "温润安宁 · 画壁电视艺术画",
+          deviceCompatibility: "Samsung The Frame 4K (16:9)",
+          accessTier: "Preview Only / 仅供高清预览",
+          licensingNote: "Display preview only · Store licensing via inquiry",
+          status: "published"
+        },
+        {
+          id: "DIG-004",
+          category: "01 · Printable Fine Art / 微喷艺术版画",
+          titleEn: "Solitary Mountain Giclée Print",
+          titleZh: "孤山 · 限量收藏级艺术微喷",
+          deviceCompatibility: "300 DPI Archival Linen Paper",
+          accessTier: "Custom Inquiry / 专属咨询定制",
+          licensingNote: "Print masters protected · Custom framed edition",
+          status: "published"
+        }
+      ],
+      collections: [
+        {
+          slug: "color-your-everyday",
+          themeTitleEn: "Color Your Everyday",
+          themeTitleZh: "点亮日常 · 随身随心艺术",
+          curatorialStatement: "Wearable, portable art pieces designed to brighten daily routines.",
+          status: "published"
+        },
+        {
+          slug: "artful-spaces",
+          themeTitleEn: "Artful Spaces",
+          themeTitleZh: "空间疗愈 · 矿物能量场",
+          curatorialStatement: "Transform your screen and walls with balanced, calming mineral energy.",
+          status: "published"
+        },
+        {
+          slug: "little-gifts-of-art",
+          themeTitleEn: "Little Gifts of Art",
+          themeTitleZh: "艺术心礼 · 诗意相赠",
+          curatorialStatement: "Curated art gift ideas in development for special moments.",
+          status: "published"
+        }
+      ],
+      artworks: [
+        {
+          id: "AW-001",
+          titleEn: "Silent Horizon",
+          titleZh: "静谧地平线",
+          medium: "Mixed media with mineral pigment / 综合矿物颜料画布",
+          dimensions: "120 × 160 cm",
+          curatorNoteZh: "以冥想式的笔触探索细腻肌理与空间静谧感，营造沉静的当代东方美学。",
+          status: "published"
+        },
+        {
+          id: "AW-002",
+          titleEn: "Ethereal Breath",
+          titleZh: "空灵之息",
+          medium: "Oil on French linen / 法国亚麻布油彩",
+          dimensions: "100 × 120 cm",
+          curatorNoteZh: "捕捉光影与空气在肌理表面的呼吸流动，传递自然疗愈力。",
+          status: "published"
+        }
+      ],
+      spaces: [{
+        id: "SPC-001",
+        spaceNameEn: "Zen Tea Pavilion Suite",
+        spaceNameZh: "云栖山舍 · 禅意茶庭套房",
+        spaceType: "Boutique Hotel / 精品酒店套房",
+        featuredArtworkIds: "AW-001, AW-002",
+        caseStoryZh: "结合天然柚木与温润黏土墙面，定制两幅大型矿物肌理画，实现空间与心境的共鸣。",
+        status: "published"
+      }]
     };
 
-    // Render Artworks
-    const artGrid = document.getElementById('grid-artworks');
-    CONTENT.artworks.forEach(item => {
-      if (item.status === 'draft') return; // Filter drafts
-      artGrid.innerHTML += `
+    // Render 1. Objects
+    const objGrid = document.getElementById('grid-objects');
+    DATA.objects.forEach(item => {
+      objGrid.innerHTML += `
         <div class="card">
-          <div class="card-img-placeholder">${item.id} · ${item.medium || 'Artwork Cover'}</div>
+          <div class="card-img">${item.id} · Artful Object Concept</div>
           <div class="card-body">
-            <span class="card-tag">ID: ${item.id}</span>
-            <div class="card-title-en">${item.titleEn}</div>
-            <div class="card-title-zh">${item.titleZh}</div>
-            <div class="card-desc">${item.curatorNoteZh || item.curatorNoteEn}</div>
-            <div class="card-meta">
-              <span>${item.dimensions || 'Custom Size'}</span>
-              <span>${item.status}</span>
-            </div>
+            <span class="card-tag">Derived from: ${item.relatedArtworkId}</span>
+            <div class="card-title-en">${item.nameEn}</div>
+            <div class="card-title-zh">${item.nameZh}</div>
+            <div class="card-desc">${item.materialCraft}</div>
+            <div class="card-meta"><span>${item.inquiryGuide}</span><span>${item.status}</span></div>
           </div>
         </div>`;
     });
 
-    // Render Digital Art
+    // Render 2. Digital Art
     const digGrid = document.getElementById('grid-digital-art');
-    CONTENT.digitalArt.forEach(item => {
+    DATA.digitalArt.forEach(item => {
       digGrid.innerHTML += `
         <div class="card">
-          <div class="card-img-placeholder">${item.id} · ${item.category.split('/')[0]}</div>
+          <div class="card-img">${item.id} · ${item.category.split('/')[0]}</div>
           <div class="card-body">
             <span class="card-tag">${item.category}</span>
             <div class="card-title-en">${item.titleEn}</div>
             <div class="card-title-zh">${item.titleZh}</div>
             <div class="card-desc">${item.deviceCompatibility} · ${item.licensingNote}</div>
-            <div class="card-meta">
-              <strong style="color:#0369a1;">${item.accessTier.split('/')[0]}</strong>
-              <span>${item.status}</span>
-            </div>
+            <div class="card-meta"><strong>${item.accessTier.split('/')[0]}</strong><span>${item.status}</span></div>
           </div>
         </div>`;
     });
 
-    // Render Objects
-    const objGrid = document.getElementById('grid-objects');
-    CONTENT.objects.forEach(item => {
-      objGrid.innerHTML += `
+    // Render 3. Collections
+    const colGrid = document.getElementById('grid-collections');
+    DATA.collections.forEach(item => {
+      colGrid.innerHTML += `
         <div class="card">
-          <div class="card-img-placeholder">${item.id} · Object Concept</div>
+          <div class="card-img">Theme · ${item.slug}</div>
           <div class="card-body">
-            <span class="card-tag">Related: ${item.relatedArtworkId}</span>
-            <div class="card-title-en">${item.nameEn}</div>
-            <div class="card-title-zh">${item.nameZh}</div>
-            <div class="card-desc">${item.materialCraft}</div>
-            <div class="card-meta">
-              <span>${item.inquiryGuide}</span>
-              <span>${item.status}</span>
-            </div>
+            <span class="card-tag">Living Collection</span>
+            <div class="card-title-en">${item.themeTitleEn}</div>
+            <div class="card-title-zh">${item.themeTitleZh}</div>
+            <div class="card-desc">${item.curatorialStatement}</div>
+            <div class="card-meta"><span>Slug: /${item.slug}</span><span>${item.status}</span></div>
           </div>
         </div>`;
     });
 
-    // Render Spaces
+    // Render 4. Artworks
+    const artGrid = document.getElementById('grid-artworks');
+    DATA.artworks.forEach(item => {
+      artGrid.innerHTML += `
+        <div class="card">
+          <div class="card-img">${item.id} · ${item.medium}</div>
+          <div class="card-body">
+            <span class="card-tag">Artwork ID: ${item.id}</span>
+            <div class="card-title-en">${item.titleEn}</div>
+            <div class="card-title-zh">${item.titleZh}</div>
+            <div class="card-desc">${item.curatorNoteZh}</div>
+            <div class="card-meta"><span>${item.dimensions}</span><span>${item.status}</span></div>
+          </div>
+        </div>`;
+    });
+
+    // Render 5. Spaces
     const spcGrid = document.getElementById('grid-spaces');
-    CONTENT.spaces.forEach(item => {
+    DATA.spaces.forEach(item => {
       spcGrid.innerHTML += `
         <div class="card">
-          <div class="card-img-placeholder">${item.id} · ${item.spaceType}</div>
+          <div class="card-img">${item.id} · ${item.spaceType}</div>
           <div class="card-body">
             <span class="card-tag">${item.spaceType}</span>
             <div class="card-title-en">${item.spaceNameEn}</div>
             <div class="card-title-zh">${item.spaceNameZh}</div>
-            <div class="card-desc">${item.caseStoryZh || item.caseStoryEn}</div>
-            <div class="card-meta">
-              <span>Artworks: ${item.featuredArtworkIds}</span>
-              <span>${item.status}</span>
-            </div>
-          </div>
-        </div>`;
-    });
-
-    // Render Collections
-    const colGrid = document.getElementById('grid-collections');
-    CONTENT.collections.forEach(item => {
-      colGrid.innerHTML += `
-        <div class="card">
-          <div class="card-img-placeholder">Curation · ${item.slug}</div>
-          <div class="card-body">
-            <span class="card-tag">Slug: ${item.slug}</span>
-            <div class="card-title-en">${item.themeTitleEn}</div>
-            <div class="card-title-zh">${item.themeTitleZh}</div>
-            <div class="card-desc">${item.curatorialStatement}</div>
-            <div class="card-meta">
-              <span>Includes: ${item.artworkIds}</span>
-              <span>${item.status}</span>
-            </div>
+            <div class="card-desc">${item.caseStoryZh}</div>
+            <div class="card-meta"><span>Artworks: ${item.featuredArtworkIds}</span><span>${item.status}</span></div>
           </div>
         </div>`;
     });
