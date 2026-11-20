@@ -9,9 +9,9 @@ media_folder: "public/assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
 collections:
-  # 1. Artworks (原作与限量画作)
+  # 1. Original Artworks & Gallery (原作画作与画廊) -> /artworks
   - name: "artworks"
-    label: "Artworks / 艺术画作"
+    label: "Original Artworks & Advisory / 唯一原作画廊与私洽"
     folder: "src/data/artworks"
     create: true
     slug: "{{id}}"
@@ -21,44 +21,44 @@ collections:
       - { label: "Title (EN) / 英文标题", name: "titleEn", widget: "string" }
       - { label: "Title (CN) / 中文标题", name: "titleZh", widget: "string" }
       - { label: "Cover Image / 封面图片", name: "coverImage", widget: "image", required: false }
-      - { label: "Medium / 材质媒介", name: "medium", widget: "string", required: false }
+      - { label: "Medium / 材质媒介 (如: 综合矿物矿物颜料画布)", name: "medium", widget: "string", required: false }
       - { label: "Dimensions / 尺寸规格", name: "dimensions", widget: "string", required: false }
       - { label: "Curator Note (EN) / 策展导览(英)", name: "curatorNoteEn", widget: "text", required: false }
       - { label: "Curator Note (CN) / 策展导览(中)", name: "curatorNoteZh", widget: "text", required: false }
-      - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "draft" }
+      - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "published" }
 
-  # 2. Digital Art (数字艺术与壁纸 - 5大分类)
+  # 2. Digital Art Editions (数字艺术与壁纸) -> /digital-artworks, /free-art
   - name: "digital_art"
-    label: "Digital Art / 数字艺术与壁纸"
+    label: "Digital Art Editions & Wallpapers / 数字艺术与壁纸"
     folder: "src/data/digital-art"
     create: true
     slug: "{{id}}"
     format: "json"
     fields:
       - { label: "Digital ID / 数字艺术编号", name: "id", widget: "string", default: "DIG-001" }
-      - { label: "Category / 产品分类", name: "category", widget: "select", options: [
-          "Mobile Wallpapers / 手机壁纸",
-          "Desktop Wallpapers / 桌面壁纸",
-          "Samsung The Frame / 画壁电视预览",
-          "Printable Fine Art / 微喷艺术版画",
-          "Digital Gift Cards / 艺术数字贺卡"
-        ], default: "Mobile Wallpapers / 手机壁纸" }
+      - { label: "Product Type / 产品类型", name: "category", widget: "select", options: [
+          "01 · Printable Fine Art / 微喷艺术版画",
+          "02 · Digital Wallpapers (Mobile/Desktop) / 数字壁纸",
+          "02 · Samsung The Frame / 画壁电视专属预览",
+          "03 · Digital Gift Cards / 艺术数字礼品卡 (预留)",
+          "Free Art Wallpapers / 免费艺术壁纸"
+        ], default: "02 · Digital Wallpapers (Mobile/Desktop) / 数字壁纸" }
       - { label: "Title (EN) / 英文标题", name: "titleEn", widget: "string" }
       - { label: "Title (CN) / 中文标题", name: "titleZh", widget: "string" }
-      - { label: "Device Compatibility / 适配设备与比例", name: "deviceCompatibility", widget: "string", default: "iPhone / Android (9:16)" }
-      - { label: "Access Tier / 下载权限", name: "accessTier", widget: "select", options: [
+      - { label: "Device Compatibility / 适配设备与规格", name: "deviceCompatibility", widget: "string", default: "iPhone / Android (9:16) & 4K Desktop" }
+      - { label: "Access Tier / 交付属性", name: "accessTier", widget: "select", options: [
           "Free Download / 免费直接下载",
           "Preview Only / 仅供高清预览",
           "Custom Inquiry / 专属咨询定制"
         ], default: "Free Download / 免费直接下载" }
-      - { label: "Preview Image / 预览缩略图路径", name: "previewImage", widget: "image", required: false }
-      - { label: "Download File / 免费壁纸下载文件", name: "downloadFile", widget: "file", required: false }
-      - { label: "Licensing Note / 授权使用说明", name: "licensingNote", widget: "text", required: false, default: "Free for personal non-commercial use only." }
+      - { label: "Preview Image / 预览展示图", name: "previewImage", widget: "image", required: false }
+      - { label: "Download File / 免费壁纸下载原图", name: "downloadFile", widget: "file", required: false }
+      - { label: "Licensing Note / 授权说明", name: "licensingNote", widget: "text", required: false, default: "Free for personal non-commercial wallpaper display." }
       - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "published" }
 
-  # 3. Art-Inspired Objects (艺术衍生好物)
+  # 3. Artful Objects (实体好物) -> /shop/artful-objects
   - name: "objects"
-    label: "Art-Inspired Objects / 艺术衍生好物"
+    label: "Artful Objects / 实体好物"
     folder: "src/data/objects"
     create: true
     slug: "{{id}}"
@@ -67,15 +67,15 @@ collections:
       - { label: "Object ID / 好物编号", name: "id", widget: "string", default: "OBJ-001" }
       - { label: "Name (EN) / 英文名称", name: "nameEn", widget: "string" }
       - { label: "Name (CN) / 中文名称", name: "nameZh", widget: "string" }
-      - { label: "Related Artwork ID / 关联画作编号", name: "relatedArtworkId", widget: "string", required: false }
+      - { label: "Related Artwork ID / 关联原作编号", name: "relatedArtworkId", widget: "string", required: false }
       - { label: "Cover Image / 产品展示图", name: "coverImage", widget: "image", required: false }
-      - { label: "Material & Craft / 材质与工艺", name: "materialCraft", widget: "text", required: false }
-      - { label: "Inquiry Guide / 定制咨询说明", name: "inquiryGuide", widget: "text", required: false }
-      - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "draft" }
+      - { label: "Material & Craft / 材质与工艺说明", name: "materialCraft", widget: "text", required: false }
+      - { label: "Inquiry Guide / 定制与打样说明", name: "inquiryGuide", widget: "text", required: false, default: "In development · Early curatorial inquiries welcome" }
+      - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "published" }
 
-  # 4. Art Spaces (空间美学与案例)
+  # 4. Art in Your Space (空间美学与案例) -> /art-in-your-space
   - name: "spaces"
-    label: "Art Spaces / 空间美学与案例"
+    label: "Art in Your Space / 空间美学与案例"
     folder: "src/data/spaces"
     create: true
     slug: "{{id}}"
@@ -84,48 +84,51 @@ collections:
       - { label: "Space ID / 空间案例编号", name: "id", widget: "string", default: "SPC-001" }
       - { label: "Space Name (EN) / 英文名称", name: "spaceNameEn", widget: "string" }
       - { label: "Space Name (CN) / 中文名称", name: "spaceNameZh", widget: "string" }
-      - { label: "Space Type / 空间类型", name: "spaceType", widget: "select", options: [
-          "Hotel / 精品酒店",
-          "Residential / 高端私宅",
-          "Commercial / 商业会所",
-          "Gallery / 艺术空间"
-        ], default: "Hotel / 精品酒店" }
-      - { label: "Cover Image / 空间实景图", name: "coverImage", widget: "image", required: false }
+      - { label: "Space Category / 空间类型", name: "spaceType", widget: "select", options: [
+          "Boutique Hotel / 精品酒店套房",
+          "Private Residence / 高端私宅定制",
+          "Tea Pavilion / 禅意茶庭空间",
+          "Commercial Studio / 商业设计空间"
+        ], default: "Boutique Hotel / 精品酒店套房" }
+      - { label: "Cover Image / 实景照片", name: "coverImage", widget: "image", required: false }
       - { label: "Featured Artwork IDs / 包含画作编号", name: "featuredArtworkIds", widget: "string", required: false }
-      - { label: "Case Story (EN) / 空间故事(英)", name: "caseStoryEn", widget: "text", required: false }
-      - { label: "Case Story (CN) / 空间故事(中)", name: "caseStoryZh", widget: "text", required: false }
-      - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "draft" }
+      - { label: "Case Story (EN) / 空间营造故事(英)", name: "caseStoryEn", widget: "text", required: false }
+      - { label: "Case Story (CN) / 空间营造故事(中)", name: "caseStoryZh", widget: "text", required: false }
+      - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "published" }
 
-  # 5. Collections (策展合集与主题)
+  # 5. Living Collections (策展主题合集) -> /collections
   - name: "collections"
-    label: "Collections / 策展合集与主题"
+    label: "Living Collections / 策展主题合集"
     folder: "src/data/collections"
     create: true
     slug: "{{slug}}"
     format: "json"
     fields:
-      - { label: "Collection Slug / 唯一标识", name: "slug", widget: "string", default: "serene-blue" }
+      - { label: "Collection Slug / 唯一路径", name: "slug", widget: "select", options: [
+          "color-your-everyday",
+          "artful-spaces",
+          "little-gifts-of-art"
+        ], default: "color-your-everyday" }
       - { label: "Theme Title (EN) / 英文主题", name: "themeTitleEn", widget: "string" }
       - { label: "Theme Title (CN) / 中文主题", name: "themeTitleZh", widget: "string" }
       - { label: "Curatorial Statement / 策展阐述", name: "curatorialStatement", widget: "text", required: false }
-      - { label: "Artwork IDs / 关联作品编号列表", name: "artworkIds", widget: "string", required: false }
       - { label: "Banner Image / 主题横幅图", name: "bannerImage", widget: "image", required: false }
-      - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "draft" }
+      - { label: "Status / 状态", name: "status", widget: "select", options: ["draft", "published", "archived"], default: "published" }
 
-  # 6. Site Content (全站文案与品牌信息)
+  # 6. Our Story & Global Content (全站文案与品牌故事) -> /the-artist, Header, Footer
   - name: "site_content"
-    label: "Site Content / 全站文案与品牌信息"
+    label: "Our Story & Global Content / 品牌故事与全站文案"
     files:
-      - label: "Global Brand & Navigation / 全局品牌与文案"
+      - label: "Global Brand & Artist Settings / 品牌与艺术家全局设置"
         name: "global_settings"
         file: "src/data/site-content.json"
         fields:
-          - { label: "Hero Headline (EN) / 首页主标题(英)", name: "heroHeadlineEn", widget: "string" }
-          - { label: "Hero Headline (CN) / 首页主标题(中)", name: "heroHeadlineZh", widget: "string" }
-          - { label: "Hero Subhead (EN) / 首页副标题(英)", name: "heroSubheadEn", widget: "string", required: false }
-          - { label: "Hero Subhead (CN) / 首页副标题(中)", name: "heroSubheadZh", widget: "string", required: false }
-          - { label: "Brand Mission / 品牌使命宣言", name: "missionStatement", widget: "text", required: false }
-          - { label: "Artist Statement (EN) / 艺术家寄语(英)", name: "artistBioEn", widget: "text", required: false }
-          - { label: "Artist Statement (CN) / 艺术家寄语(中)", name: "artistBioZh", widget: "text", required: false }
-          - { label: "Contact Email / 业务联系邮箱", name: "contactEmail", widget: "string", default: "packaging@bdsupply.cc" }
+          - { label: "Tagline / 导航标语", name: "tagline", widget: "string", default: "ART · SPACE · LIFE" }
+          - { label: "Hero Headline (EN) / 首页主标题(英)", name: "heroHeadlineEn", widget: "string", default: "Live With Art." }
+          - { label: "Hero Headline (CN) / 首页主标题(中)", name: "heroHeadlineZh", widget: "string", default: "生活 · 艺术 · 疗愈" }
+          - { label: "Hero Subhead (EN) / 首页副标题(英)", name: "heroSubheadEn", widget: "string", default: "Original art for the things you wear, use, and live with." }
+          - { label: "Hero Subhead (CN) / 首页副标题(中)", name: "heroSubheadZh", widget: "string", default: "以天然矿物色彩与流动画意，将松哥原作融于日常器物、数字艺术与空间体验。" }
+          - { label: "The Artist Songge Bio (EN) / 艺术家松哥介绍(英)", name: "artistBioEn", widget: "text", default: "Authentic oil and natural mineral masterworks created in Hangzhou mountain studio." }
+          - { label: "The Artist Songge Bio (CN) / 艺术家松哥介绍(中)", name: "artistBioZh", widget: "text", default: "隐居杭州山间的当代艺术家松哥，以天然矿物颜料与细腻笔触探索空间疗愈。" }
+          - { label: "Contact Email / 业务咨询邮箱", name: "contactEmail", widget: "string", default: "packaging@bdsupply.cc" }
           - { label: "Footer Copyright / 页脚版权信息", name: "footerCopyright", widget: "string", default: "© 2026 SHEMARK LIVING. All rights reserved." }
