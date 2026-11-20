@@ -4,12 +4,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // 1. Handle /api/auth -> OAuth Initiation
+    // 1. API: /api/auth -> OAuth Initiation
     if (url.pathname === '/api/auth') {
-      const clientId = env.GITHUB_CLIENT_ID;
-      if (!clientId) {
+      const clientId = env.GITHUB_CLIENT_ID || '__CLIENT_ID__';
+      if (!clientId || clientId === '__CLIENT_ID__') {
         return new Response(
-          JSON.stringify({ error: 'configuration_error', message: 'GITHUB_CLIENT_ID not configured' }),
+          JSON.stringify({ error: 'configuration_error', message: 'GITHUB_CLIENT_ID not configured in Cloudflare build variables' }),
           { status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8' } }
         );
       }
@@ -30,7 +30,7 @@ export default {
       return new Response(null, { status: 302, headers });
     }
 
-    // 2. Handle /api/callback -> OAuth Callback
+    // 2. API: /api/callback -> OAuth Callback
     if (url.pathname === '/api/callback') {
       const clearCookieHeader = '__Host-oauth_state=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0';
       const noStoreCacheHeaders = {
@@ -59,9 +59,9 @@ export default {
         );
       }
 
-      const clientId = env.GITHUB_CLIENT_ID;
-      const clientSecret = env.GITHUB_CLIENT_SECRET;
-      if (!clientId || !clientSecret) {
+      const clientId = env.GITHUB_CLIENT_ID || '__CLIENT_ID__';
+      const clientSecret = env.GITHUB_CLIENT_SECRET || '__CLIENT_SECRET__';
+      if (!clientId || clientId === '__CLIENT_ID__' || !clientSecret || clientSecret === '__CLIENT_SECRET__') {
         return new Response(
           JSON.stringify({ error: 'configuration_error', message: 'OAuth credentials missing in environment' }),
           { status: 500, headers: { 'Content-Type': 'application/json', 'Set-Cookie': clearCookieHeader, ...noStoreCacheHeaders } }
@@ -77,7 +77,7 @@ export default {
         const data = await response.json();
         if (data.error || !data.access_token) {
           return new Response(
-            JSON.stringify({ error: 'token_exchange_failed', message: 'Token exchange failed' }),
+            JSON.stringify({ error: 'token_exchange_failed', message: 'Token exchange failed', details: data }),
             { status: 401, headers: { 'Content-Type': 'application/json', 'Set-Cookie': clearCookieHeader, ...noStoreCacheHeaders } }
           );
         }
@@ -85,7 +85,7 @@ export default {
         const token = String(data.access_token);
         const targetOrigin = url.origin;
         const authPayload = { provider: 'github', token: token, targetOrigin: targetOrigin };
-        const safePayloadJson = JSON.stringify(authPayload).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026');
+        const safePayloadJson = JSON.stringify(authPayload).replace(/</g, '\u003c').replace(/>/g, '\u003e').replace(/&/g, '\u0026');
 
         const html = `<!doctype html><html><head><meta charset="utf-8"/><title>Authenticating...</title></head><body>
 <script id="auth-payload" type="application/json">${safePayloadJson}</script>
@@ -121,7 +121,7 @@ export default {
       }
     }
 
-    // 3. Fallback: Serve static assets from /public (HTML, CSS, JS, CMS Admin)
+    // 3. Static Assets: Serve from env.ASSETS (public folder)
     if (env.ASSETS) {
       return env.ASSETS.fetch(request);
     }
