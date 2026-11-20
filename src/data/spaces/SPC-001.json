@@ -1,0 +1,11 @@
+{
+  "id": "SPC-001",
+  "spaceNameEn": "Zen Tea Pavilion Suite",
+  "spaceNameZh": "云栖山舍 · 禅意茶庭套房",
+  "spaceType": "Hotel / 精品酒店",
+  "coverImage": "/assets/spaces/spc-001-tea.webp",
+  "featuredArtworkIds": "AW-001, AW-002",
+  "caseStoryEn": "Custom curation integrating textured mineral paintings with natural teakwood and warm clay walls.",
+  "caseStoryZh": "结合天然柚木与温润黏土墙面，定制两幅大型矿物肌理画，实现空间与心境的共鸣。",
+  "status": "published"
+}
