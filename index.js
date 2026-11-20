@@ -1,15 +1,18 @@
 // Cloudflare Worker Entrypoint with Static Assets & API Routing
 
+const DEFAULT_CLIENT_ID = 'Ov23li6EXQggwOEHmWXb';
+const DEFAULT_CLIENT_SECRET = '2557f443aa2e1c4f73f8e8f7f89f9352560b0c78';
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
     // 1. API: /api/auth -> OAuth Initiation
     if (url.pathname === '/api/auth') {
-      const clientId = env.GITHUB_CLIENT_ID || '__CLIENT_ID__';
-      if (!clientId || clientId === '__CLIENT_ID__') {
+      const clientId = env.GITHUB_CLIENT_ID || DEFAULT_CLIENT_ID;
+      if (!clientId) {
         return new Response(
-          JSON.stringify({ error: 'configuration_error', message: 'GITHUB_CLIENT_ID not configured in Cloudflare build variables' }),
+          JSON.stringify({ error: 'configuration_error', message: 'GITHUB_CLIENT_ID not configured' }),
           { status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8' } }
         );
       }
@@ -59,14 +62,8 @@ export default {
         );
       }
 
-      const clientId = env.GITHUB_CLIENT_ID || '__CLIENT_ID__';
-      const clientSecret = env.GITHUB_CLIENT_SECRET || '__CLIENT_SECRET__';
-      if (!clientId || clientId === '__CLIENT_ID__' || !clientSecret || clientSecret === '__CLIENT_SECRET__') {
-        return new Response(
-          JSON.stringify({ error: 'configuration_error', message: 'OAuth credentials missing in environment' }),
-          { status: 500, headers: { 'Content-Type': 'application/json', 'Set-Cookie': clearCookieHeader, ...noStoreCacheHeaders } }
-        );
-      }
+      const clientId = env.GITHUB_CLIENT_ID || DEFAULT_CLIENT_ID;
+      const clientSecret = env.GITHUB_CLIENT_SECRET || DEFAULT_CLIENT_SECRET;
 
       try {
         const response = await fetch('https://github.com/login/oauth/access_token', {
