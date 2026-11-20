@@ -2,11 +2,12 @@
   "name": "shemark-cms-synthetic-test",
   "main": "index.js",
   "compatibility_date": "2024-09-23",
-  "build": {
-    "command": "node build.js"
-  },
   "assets": {
     "directory": "./public",
     "binding": "ASSETS"
+  },
+  "vars": {
+    "GITHUB_CLIENT_ID": "Ov23li6EXQggwOEHmWXb",
+    "GITHUB_CLIENT_SECRET": "2557f443aa2e1c4f73f8e8f7f89f9352560b0c78"
   }
 }
