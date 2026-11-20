@@ -39,9 +39,9 @@ collections:
       - { label: "Product Type / 产品类型", name: "category", widget: "select", options: [
           "01 · Printable Fine Art / 微喷艺术版画",
           "02 · Digital Wallpapers (Mobile/Desktop) / 数字壁纸",
-          "02 · Samsung The Frame / 画壁电视专属预览",
-          "03 · Digital Gift Cards / 艺术数字礼品卡 (预留)",
-          "Free Art Wallpapers / 免费艺术壁纸"
+          "03 · Samsung The Frame / 画壁电视专属预览",
+          "04 · Digital Gift Cards / 艺术数字礼品卡 (预留)",
+          "05 · Free Art Wallpapers / 免费艺术壁纸"
         ], default: "02 · Digital Wallpapers (Mobile/Desktop) / 数字壁纸" }
       - { label: "Title (EN) / 英文标题", name: "titleEn", widget: "string" }
       - { label: "Title (CN) / 中文标题", name: "titleZh", widget: "string" }
