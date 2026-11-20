@@ -1,2 +1,7 @@
-# shemark-cms-synthetic-test
-SHEMARKLIVING.COM
+{
+  "name": "shemark-cms-synthetic-test",
+  "compatibility_date": "2024-09-23",
+  "assets": {
+    "directory": "./public"
+  }
+}
